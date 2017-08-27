@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Css3 loading</title>
+        <style>
+            html,body{
+                margin: 0;
+                height: 100%;
+                position: relative
+            }
+            .container{
+                width: 100px;
+                height: 100px;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-top: -50px;
+                margin-left: -50px;
+            }
+            .wrap-circle{
+                width: 100px;
+                height: 100px;
+                position: relative;
+                overflow: hidden;
+            }
+            .big-circle{
+                position: absolute;
+                animation: big-c 1s linear infinite;
+            }
+            .big-circle>div{
+                width: 50px;
+                height: 100px;
+                overflow: hidden;
+                float: left;
+            }      
+            .big-circle>div>div{
+                width: 45px;
+                height: 90px;
+            }            
+            .big-circle .left div{
+                border-top-left-radius: 50px;
+                border-bottom-left-radius: 50px;
+                border: 5px solid #2ec3e7;
+                border-right: none;
+                transform-origin: right center;
+                transform: rotate(-40deg);
+            }       
+            .big-circle .right div{
+                border-top-right-radius: 50px;
+                border-bottom-right-radius: 50px;
+                border: 5px solid #2ec3e7;
+                border-left: none;
+            }            
+            .inner-circle{
+                width: 60px;
+                height: 60px;
+                background: #2ec3e7;
+                margin: 20px auto;
+                position: relative;
+                overflow: hidden;
+                border-radius: 50%;                
+            }
+            .half-circle{
+                width: 30px;
+                height: 60px;
+                position: absolute;
+                top: 0;
+                overflow: hidden;
+            }
+            .half-circle div{
+                height: 60px;
+                background: rgba(255, 255, 255, .5);
+            }            
+            .inner-circle .left{
+                left: 0;
+            }
+            .inner-circle .right{
+                right: 0;
+            }
+            .inner-circle .left div{
+                border-top-left-radius: 50%;
+                border-bottom-left-radius: 50%;
+                transform-origin: right center;
+                animation: left-c 2s linear infinite;
+            }
+            .inner-circle .right div{
+                border-top-right-radius: 50%;
+                border-bottom-right-radius: 50%;
+                transform-origin: left center;
+                animation: right-c 2s linear infinite;
+
+            }
+            @keyframes big-c{
+                0% { transform: rotate(0deg) }
+                100% { transform: rotate(-360deg) }
+            }
+            @keyframes left-c {
+                0%   { transform: rotate(0deg) }
+                25%,50% { transform: rotate(-180deg) }
+                75%,100%  { transform: rotate(-360deg) }
+            }
+            @keyframes right-c {
+                0%,25%   { transform: rotate(0deg) }
+                50%,75% { transform: rotate(-180deg) }         
+                100% { transform: rotate(-360deg) }                
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="wrap-circle">
+                <div class="big-circle">
+                    <div class="left">
+                        <div></div>
+                    </div>
+                    <div class="right">
+                        <div></div>
+                    </div>
+                </div>
+                <div class="inner-circle">
+                    <!-- 内部动画 -->
+                    <div class="left half-circle">
+                        <div></div>
+                    </div>
+                    <div class="right half-circle">
+                        <div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
