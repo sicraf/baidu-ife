@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Css3 slider</title>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            ul{
+                list-style: none;
+            }
+            li{
+                line-height: 0;
+            }
+            #slider{
+                width: 1050px;
+                padding: 100px 0;
+                margin: 0 auto;
+            }
+            #slider ul{
+                width: 350px;
+                height: 150px;
+                margin: 100px auto;
+                position: relative;
+                transform-style: preserve-3d;
+                perspective: 800px;
+            }
+            #slider ul li{
+                width: 350px;
+                position: absolute;
+            }
+            #slider ul li:nth-child(1){
+                transform: rotateY(0deg) translateZ(320px);                
+            }    
+            #slider ul li:nth-child(2){
+                transform:rotateY(300deg) translateZ(320px);
+            }
+            #slider ul li:nth-child(3){
+                transform:rotateY(240deg) translateZ(320px);
+            }
+            #slider ul li:nth-child(4){
+                transform:rotateY(180deg) translateZ(320px);
+            }
+            #slider ul li:nth-child(5){
+                transform:rotateY(120deg) translateZ(320px);
+            }
+            #slider ul li:nth-child(6){
+                transform:rotateY(60deg) translateZ(320px);
+            }
+                    
+        </style>
+    </head>
+    <body>
+        <div id="slider-wrap">
+            <span class="prev"></span>
+            <span class="next"></span>
+            <div id="slider">
+                <ul>
+                    <li><img src="http://via.placeholder.com/350x150?text=1" alt=""></li>
+                    <li><img src="http://via.placeholder.com/350x150?text=2" alt=""></li>
+                    <li><img src="http://via.placeholder.com/350x150?text=3" alt=""></li>
+                    <li><img src="http://via.placeholder.com/350x150?text=4" alt=""></li>
+                    <li><img src="http://via.placeholder.com/350x150?text=5" alt=""></li>
+                    <li><img src="http://via.placeholder.com/350x150?text=6" alt=""></li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            var slider = document.getElementById('slider');
+            var ul = slider.getElementsByTagName('ul');
+
+            slider.onclick = function(){
+                console.log(ul[0])
+                ul[0].style.transform = 'rotateY(50deg)'
+            }
+        </script>
+    </body>
+</html>
