@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Css3 slider</title>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+            }
+            ul{
+                list-style: none;
+            }
+            li{
+                line-height: 0;
+            }
+            #slider-wrap{
+                height: 350px;
+                position: relative;
+            }   
+            #slider-wrap>span{
+                width: 370px;
+                height: 350px;
+                position: absolute;
+                z-index: 9999;
+            }            
+            #slider-wrap .prev{
+                right: 50%;
+            }   
+            #slider-wrap .next{
+                left: 50%;
+            }   
+            #slider{
+                width: 740px;
+                height: 150px;
+                padding: 100px 0;
+                margin: 0 auto;  
+                /* perspective属性放在stage元素上 */
+                perspective: 800px;
+            }
+            #slider ul{
+                width: 350px;
+                height: 150px;
+                transform-style: preserve-3d;
+                position: absolute;
+                left: 50%;
+                margin-left: -175px;
+                transition: transform 1s ease-out;
+            }
+            #slider ul li{
+                width: 350px;
+                position: absolute;
+            }
+            #slider ul li img{
+                width: 350px;
+            }
+            #slider ul li:nth-child(1){
+                transform: rotateY(0deg) translateZ(320px);                
+            }    
+            #slider ul li:nth-child(2){
+                transform:rotateY(60deg) translateZ(320px);
+            }
+            #slider ul li:nth-child(3){
+                transform:rotateY(120deg) translateZ(320px);
+            }
+            #slider ul li:nth-child(4){
+                transform:rotateY(180deg) translateZ(320px);
+            }
+            #slider ul li:nth-child(5){
+                transform:rotateY(240deg) translateZ(320px);
+            }
+            #slider ul li:nth-child(6){
+                transform:rotateY(300deg) translateZ(320px);
+            }
+                    
+        </style>
+    </head>
+    <body>
+        <div id="slider-wrap">
+            <span class="prev"></span>
+            <span class="next"></span>
+            <div id="slider">
+                <ul>
+                    <li><img src="http://via.placeholder.com/350x150?text=1" alt=""></li>
+                    <li><img src="http://via.placeholder.com/350x150?text=2" alt=""></li>
+                    <li><img src="http://via.placeholder.com/350x150?text=3" alt=""></li>
+                    <li><img src="http://via.placeholder.com/350x150?text=4" alt=""></li>
+                    <li><img src="http://via.placeholder.com/350x150?text=5" alt=""></li>
+                    <li><img src="http://via.placeholder.com/350x150?text=6" alt=""></li>
+                </ul>
+            </div>
+        </div>
+        <script>
+            var slider = document.getElementById('slider'),
+                ul = slider.getElementsByTagName('ul'),
+                prev = document.querySelector('.prev'),
+                next = document.querySelector('.next'),
+                index = 0;
+            
+            var transform = function(element, value, key) {
+                key = key || "Transform";
+                ["Moz", "O", "Ms", "Webkit", ""].forEach(function(prefix) {
+                    element.style[prefix + key] = value;	
+			    })
+            }
+
+            prev.onclick = function(){
+                transform(ul[0], "rotateY("+ (-1 * 60 * --index) +"deg)");	
+            }
+            next.onclick = function(){
+                transform(ul[0], "rotateY("+ (-1 * 60 * ++index) +"deg)");	                
+            }
+        </script>
+    </body>
+</html>
