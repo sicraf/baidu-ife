@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Infinite Scroll</title>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+            }
+            h1{
+                width: 100%;
+                font-size: 24px;
+                line-height: 50px;
+                font-weight: normal;
+                text-align: center;
+                background: #eee;
+                border-bottom: 1px solid #aaa;
+                position: fixed;
+                top: 0;
+            }
+            .container{
+                margin-top: 50px;
+            }
+            ul{
+                padding-top: 40px;
+                background: #ddd;
+            }
+            ul li{
+                background: #eee;
+                height: 40px;
+                line-height: 40px;
+                border-bottom: 1px solid #ddd;
+                padding: 0 20px;
+            }
+            ul li:first-child{
+                border-top: 1px solid #ddd;
+            }
+            .loading{
+                font-size: 20px;
+                text-align: center;
+                line-height: 40px;
+                background: #ddd;
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Infinite Scroll</h1>
+        <div class="container">
+            <ul>
+                <li>item 1</li>
+                <li>item 2</li>
+                <li>item 3</li>
+                <li>item 4</li>
+                <li>item 5</li>
+                <li>item 6</li>
+                <li>item 7</li>
+                <li>item 8</li>
+                <li>item 9</li>
+                <li>item 10</li>
+                <li>item 11</li>
+                <li>item 12</li>
+                <li>item 13</li>
+                <li>item 14</li>
+                <li>item 15</li>
+                <li>item 16</li>
+                <li>item 17</li>
+                <li>item 18</li>
+                <li>item 19</li>
+                <li>item 20</li>
+            </ul>
+            <div class="loading">正在加载中...</div>
+        </div>
+        <script>
+            var msg = document.querySelector('.loading'),
+                wrapEle = document.querySelector('.container'),
+                ulEle = wrapEle.getElementsByTagName('ul')[0],
+                arr = [21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60],
+                start = 0;
+
+            setInterval(function(){
+                if(document.body.scrollHeight-document.body.scrollTop < 660){
+                    showLoadigMsg();
+                    loadMore(start,20,arr,ulEle);
+                    start += 20;
+                }
+            },1000)
+
+            function showLoadigMsg(){
+                msg.style.display = 'block';
+            }            
+
+            function loadMore(start,num,arr,target){
+                var temp = '';
+                if(start + num > arr.length ) return loadingComplete();
+                for(var s = start; s<start+num; s++){
+                    temp += '<li>item '+ arr[s] +'</li>';
+                }
+                // 模拟 ajax 获取
+                setTimeout(function(){
+                    console.log('运行中...')
+                    target.innerHTML = target.innerHTML + temp;
+                    loadingComplete();
+                },1500)
+            }
+
+            function loadingComplete(){
+                msg.style.display = 'none';    
+            }
+        </script>
+    </body>
+</html>
